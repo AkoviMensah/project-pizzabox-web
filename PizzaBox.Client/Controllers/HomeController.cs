@@ -18,13 +18,11 @@ namespace PizzaBox.Client.Controllers
     [HttpGet]
     public IActionResult Index()
     {
-      //ViewBag.Order = new OrderViewModel();
-      //ViewData
-      //TempData
+      var order = new OrderViewModel();
 
-      var view = View("index", new OrderViewModel(_unitOfWork));
+      order.Load(_unitOfWork);
 
-      return view;
+      return View("order", order);
     }
   }
 }

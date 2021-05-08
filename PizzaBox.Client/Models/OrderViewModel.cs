@@ -13,7 +13,6 @@ namespace PizzaBox.Client.Models
     public List<Size> Sizes { get; set; }
     public List<Topping> Toppings { get; set; }
 
-
     [Required(ErrorMessage = "please select a crust")]
     [DataType(DataType.Text)]
     public string SelectedCrust { get; set; }
@@ -25,11 +24,11 @@ namespace PizzaBox.Client.Models
     [Required(ErrorMessage = "please select some toppings")]
     public List<string> SelectedToppings { get; set; }
 
-    public OrderViewModel(UnitOfWork unitOfWork)
+    public void Load(UnitOfWork unitOfWork)
     {
-      Crusts = unitOfWork.Crusts.Select().ToList();
-      Sizes = unitOfWork.Sizes.Select().ToList();
-      Toppings = unitOfWork.Toppings.Select().ToList();
+      Crusts = unitOfWork.Crusts.Select(c => !string.IsNullOrWhiteSpace(c.Name)).ToList();
+      Sizes = unitOfWork.Sizes.Select(s => !string.IsNullOrWhiteSpace(s.Name)).ToList();
+      Toppings = unitOfWork.Toppings.Select(t => !string.IsNullOrWhiteSpace(t.Name)).ToList();
     }
 
     public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
