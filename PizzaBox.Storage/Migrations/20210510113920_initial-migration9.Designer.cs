@@ -9,8 +9,8 @@ using PizzaBox.Storage;
 namespace PizzaBox.Storage.Migrations
 {
     [DbContext(typeof(PizzaBoxContext))]
-    [Migration("20210508013817_initial-migration1")]
-    partial class initialmigration1
+    [Migration("20210510113920_initial-migration9")]
+    partial class initialmigration9
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,6 +52,28 @@ namespace PizzaBox.Storage.Migrations
                         });
                 });
 
+            modelBuilder.Entity("PizzaBox.Domain.Models.Customer", b =>
+                {
+                    b.Property<long>("EntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("EntityId");
+
+                    b.ToTable("Customers");
+
+                    b.HasData(
+                        new
+                        {
+                            EntityId = 1L,
+                            Name = "ALO"
+                        });
+                });
+
             modelBuilder.Entity("PizzaBox.Domain.Models.Order", b =>
                 {
                     b.Property<long>("EntityId")
@@ -74,8 +96,14 @@ namespace PizzaBox.Storage.Migrations
                     b.Property<long>("CrustEntityId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
                     b.Property<long>("OrderEntityId")
                         .HasColumnType("bigint");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
 
                     b.Property<long>("SizeEntityId")
                         .HasColumnType("bigint");
@@ -120,6 +148,38 @@ namespace PizzaBox.Storage.Migrations
                         {
                             EntityId = 3L,
                             Name = "large"
+                        });
+                });
+
+            modelBuilder.Entity("PizzaBox.Domain.Models.Store", b =>
+                {
+                    b.Property<long>("EntityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("EntityId");
+
+                    b.ToTable("Stores");
+
+                    b.HasData(
+                        new
+                        {
+                            EntityId = 1L,
+                            Name = "ChicagoStore"
+                        },
+                        new
+                        {
+                            EntityId = 2L,
+                            Name = "MadisonStore"
+                        },
+                        new
+                        {
+                            EntityId = 3L,
+                            Name = "NewYorkStore"
                         });
                 });
 

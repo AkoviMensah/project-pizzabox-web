@@ -1,0 +1,14 @@
+@model PizzaBox.Client.Models.OrderViewModel
+
+<form action="/order" method="post">
+  @Html.AntiForgeryToken()
+
+  <button class="form-check-input" type="submit">MeatPizza</button>
+</form>
+
+<form action="/order" method="post">
+  @Html.AntiForgeryToken()
+
+
+  <button type="submit">VeggiePizza</button>
+</form>

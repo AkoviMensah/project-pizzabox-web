@@ -10,6 +10,8 @@ namespace PizzaBox.Client.Controllers
   {
     private readonly UnitOfWork _unitOfWork;
 
+    private CustomerViewModel cvm = new CustomerViewModel();
+
     public HomeController(UnitOfWork unitOfWork)
     {
       _unitOfWork = unitOfWork;
@@ -18,11 +20,12 @@ namespace PizzaBox.Client.Controllers
     [HttpGet]
     public IActionResult Index()
     {
-      var order = new OrderViewModel();
+      var customer = new CustomerViewModel();
 
-      order.Load(_unitOfWork);
+      customer.Load(_unitOfWork);
+      cvm.Load(_unitOfWork);
 
-      return View("order", order);
+      return View("Customer", customer);
     }
   }
 }

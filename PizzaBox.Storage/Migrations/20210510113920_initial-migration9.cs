@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace PizzaBox.Storage.Migrations
 {
-    public partial class initialmigration1 : Migration
+    public partial class initialmigration9 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,6 +18,19 @@ namespace PizzaBox.Storage.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Crusts", x => x.EntityId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    EntityId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.EntityId);
                 });
 
             migrationBuilder.CreateTable(
@@ -46,6 +59,19 @@ namespace PizzaBox.Storage.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Stores",
+                columns: table => new
+                {
+                    EntityId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Stores", x => x.EntityId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Toppings",
                 columns: table => new
                 {
@@ -64,6 +90,8 @@ namespace PizzaBox.Storage.Migrations
                 {
                     EntityId = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Price = table.Column<decimal>(type: "numeric", nullable: false),
                     CrustEntityId = table.Column<long>(type: "bigint", nullable: false),
                     SizeEntityId = table.Column<long>(type: "bigint", nullable: false),
                     OrderEntityId = table.Column<long>(type: "bigint", nullable: false)
@@ -126,6 +154,11 @@ namespace PizzaBox.Storage.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Customers",
+                columns: new[] { "EntityId", "Name" },
+                values: new object[] { 1L, "ALO" });
+
+            migrationBuilder.InsertData(
                 table: "Sizes",
                 columns: new[] { "EntityId", "Name" },
                 values: new object[,]
@@ -133,6 +166,16 @@ namespace PizzaBox.Storage.Migrations
                     { 1L, "small" },
                     { 2L, "medium" },
                     { 3L, "large" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Stores",
+                columns: new[] { "EntityId", "Name" },
+                values: new object[,]
+                {
+                    { 1L, "ChicagoStore" },
+                    { 2L, "MadisonStore" },
+                    { 3L, "NewYorkStore" }
                 });
 
             migrationBuilder.InsertData(
@@ -171,7 +214,13 @@ namespace PizzaBox.Storage.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Customers");
+
+            migrationBuilder.DropTable(
                 name: "PizzaTopping");
+
+            migrationBuilder.DropTable(
+                name: "Stores");
 
             migrationBuilder.DropTable(
                 name: "Pizzas");
