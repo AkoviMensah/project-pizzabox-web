@@ -7,15 +7,26 @@ jobs:
 
   test:
     runs-on: ubuntu-20.04
+    steps:
       - uses: actions/checkout@v2
-      - run: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover --logger=trx
+      - run: dotnet test -p:CollectCoverage=true -p:CoverletOutputFormat=opencover -p:CoverletOutput=./test_coverage/ -l trx -r ./test_result/
 
   analyze:
+    needs:
+      - build
+      - test
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-20.04
+    steps:
       - uses: actions/checkout@v2
       - run: dotnet tool install -g dotnet-sonarscanner
-      - run: dotnet-sonarscanner begin
-      - run: dotnet-sonarscanner end
+      - run: dotnet sonarscanner begin -k:'project-pizzabox-web' -o:'AkoviMensah' -d:sonar.login=$SONAR_TOKEN -d:sonar.host.url='https://sonarcloud.io'
+      - run: dotnet build
+      - run: dotnet sonarscanner end -d:sonar.login=$SONAR_TOKEN
+
+  # package: docker image
 
 name: ci-pipeline
 
