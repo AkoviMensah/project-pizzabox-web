@@ -26,7 +26,6 @@ jobs:
       - run: dotnet build
       - run: dotnet sonarscanner end -d:sonar.login=$SONAR_TOKEN
 
-
   package:
     env:
       DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
@@ -36,10 +35,10 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: docker image build -f Dockerfile -t pizzabox .
-      - run: docker image tag pizzabox akovimensah/pizzabox
+      - run: docker image build -f Dockerfile -t project-pizzabox-web .
+      - run: docker image tag project-pizzabox-web akovimensah/project-pizzabox-web
       - run: echo $DOCKER_TOKEN | docker login -u $DOCKER_USER --password-stdin
-      - run: docker push akovimensah/pizzabox
+      - run: docker push akovimensah/project-pizzabox-web
       - run: docker logout
 
 name: ci-pipeline
