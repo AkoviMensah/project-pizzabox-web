@@ -5,8 +5,9 @@ namespace PizzaBox.Domain.Models
 {
   public class Order : Entity
   {
-
-    public List<Pizza> Pizzas { get; set; }
+    public Customer Customer;
+    public Store Store;
+    public List<Pizza> Pizzas { get; set; } = new List<Pizza>();
     public override string ToString()
     {
       var temp = "";

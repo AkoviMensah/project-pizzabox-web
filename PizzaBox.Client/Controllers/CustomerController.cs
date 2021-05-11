@@ -4,17 +4,44 @@ using Microsoft.AspNetCore.Mvc;
 using PizzaBox.Client.Models;
 using PizzaBox.Domain.Models;
 using PizzaBox.Storage;
+using PizzaBox.Storage.Repositories;
 
 namespace PizzaBox.Client.Controllers
 {
-  [Route("[controller]")]
-  public class OrderController : Controller
+  [Route("[controller]/[action]")]
+  public class CustomerController : Controller
   {
     private readonly UnitOfWork _unitOfWork;
+    private Order Order = new Order();
 
-    public OrderController(UnitOfWork unitOfWork)
+    public CustomerController(UnitOfWork unitOfWork)
     {
       _unitOfWork = unitOfWork;
+    }
+
+    [HttpGet]
+    public IActionResult Index()
+    {
+      var order = new CustomerViewModel();
+      Order = new Order();
+
+      order.Load(_unitOfWork);
+
+      return View("customer", order);
+    }
+
+    [HttpGet]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult start(CustomerViewModel cust)
+    {
+      var order = new OrderViewModel();
+
+      order.Load(_unitOfWork);
+      Order.Customer = _unitOfWork.Customers.Select(c => c.Name == cust.SelectedCustomer).First();
+      Order.Store = _unitOfWork.Stores.Select(s => s.Name == cust.SelectedStore).First();
+      ViewBag.Order = Order;
+      return View("order", order);
     }
 
     [HttpGet]
@@ -33,15 +60,16 @@ namespace PizzaBox.Client.Controllers
           toppings.Add(_unitOfWork.Toppings.Select(t => t.Name == item).First());
         }
 
-        var newPizza = new Pizza { Crust = crust, Size = size, Toppings = toppings };
+        var newPizza = new Pizza() { Crust = crust, Size = size, Toppings = toppings };
         var newOrder = new Order { Pizzas = new List<Pizza> { newPizza } };
+        Order.Pizzas.Add(newPizza);
 
         _unitOfWork.Orders.Insert(newOrder);
         _unitOfWork.Save();
 
-        ViewBag.Order = newOrder;
+        ViewBag.Order = Order;
 
-        return View("checkout");
+        return View("checkout", Order);
       }
 
       order.Load(_unitOfWork);
