@@ -57,9 +57,7 @@
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Client/obj/Debug/net5.0/Razor/Views/Shared/Customer.cshtml.g.cs
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Client/obj/Debug/net5.0/Razor/Views/Shared/Pizza.cshtml.g.cs
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Client/bin/Debug/net5.0/mono_crash.21acb2b632.1.json
-/home/akovi/revature/project-pizzabox-web/PizzaBox.Client/obj/Debug/net5.0/Razor/Views/Shared/Store.cshtml.g.cs
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Client/bin/Debug/net5.0/mono_crash.21acb2b632.2.json
-/home/akovi/revature/project-pizzabox-web/PizzaBox.Client/obj/Debug/net5.0/Razor/Views/Shared/ListOrders.cshtml.g.cs
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Client/bin/Debug/net5.0/Microsoft.Data.SqlClient.dll
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Client/bin/Debug/net5.0/Microsoft.EntityFrameworkCore.SqlServer.dll
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Client/bin/Debug/net5.0/Microsoft.Identity.Client.dll

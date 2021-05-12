@@ -15654,11 +15654,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/akovi/revature/project-pizzabox-web/PizzaBox.Client/Views/Shared/ListOrders.cshtml",
-      "TargetPath": "Views\\Shared\\ListOrders.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "/home/akovi/revature/project-pizzabox-web/PizzaBox.Client/Views/_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -15666,11 +15661,6 @@
     {
       "FilePath": "/home/akovi/revature/project-pizzabox-web/PizzaBox.Client/Views/Home/Privacy.cshtml",
       "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/home/akovi/revature/project-pizzabox-web/PizzaBox.Client/Views/Shared/Store.cshtml",
-      "TargetPath": "Views\\Shared\\Store.cshtml",
       "FileKind": "mvc"
     },
     {
