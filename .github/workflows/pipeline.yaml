@@ -35,11 +35,24 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: docker image build -f Dockerfile -t project-pizzabox-web .
-      - run: docker image tag project-pizzabox-web akovimensah/project-pizzabox-web
+      - run: docker image build -f Dockerfile -t pizzabox .
+      - run: docker image tag pizzabox akovi66/pizzabox
       - run: echo $DOCKER_TOKEN | docker login -u $DOCKER_USER --password-stdin
-      - run: docker push akovimensah/project-pizzabox-web
+      - run: docker push akovi66/pizzabox
       - run: docker logout
+
+  deploy:
+    needs:
+      - package
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - uses: azure/webapps-deploy@v2
+        with:
+          app-name: pizzabox-akovi
+          images: akovi66/pizzabox
 
 name: ci-pipeline
 

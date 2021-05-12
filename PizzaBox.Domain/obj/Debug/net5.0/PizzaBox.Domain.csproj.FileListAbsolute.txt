@@ -10,3 +10,7 @@
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Domain/obj/Debug/net5.0/PizzaBox.Domain.dll
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Domain/obj/Debug/net5.0/ref/PizzaBox.Domain.dll
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Domain/obj/Debug/net5.0/PizzaBox.Domain.pdb
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Domain.deps.json
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Domain.dll
+/home/akovi/revature/project-pizzabox-web/test_result/ref/PizzaBox.Domain.dll
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Domain.pdb
