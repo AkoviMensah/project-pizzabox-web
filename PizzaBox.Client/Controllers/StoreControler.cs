@@ -33,6 +33,7 @@ namespace PizzaBox.Client.Controllers
       var s = _unitOfWork.Stores.Select(s => s.Name == store.SelectedStore).First();
       ViewBag.Store = s;
       store.Load(_unitOfWork);
+
       return View("order", store);
     }
   }
