@@ -62,7 +62,9 @@ namespace PizzaBox.Client.Controllers
 
         var newPizza = new Pizza() { Crust = crust, Size = size, Toppings = toppings };
         var newOrder = new Order { Pizzas = new List<Pizza> { newPizza } };
-        Order.Pizzas.Add(newPizza);
+        newOrder.Pizzas.Add(newPizza);
+        newOrder.Customer = _unitOfWork.Customers.Select(c => c.Name == order.SelectedCustomer).First();
+        newOrder.Store = _unitOfWork.Stores.Select(s => s.Name == order.SelectedStore).First();
 
         _unitOfWork.Orders.Insert(newOrder);
         _unitOfWork.Save();

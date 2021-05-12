@@ -1559,6 +1559,7 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "PizzaBox.Domain": "1.0.0",
+          "microsoft.entityframeworkcore.sqlserver": "5.0.6",
           "npgsql.entityframeworkcore.postgresql": "5.0.5.1"
         },
         "compile": {

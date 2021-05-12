@@ -40,6 +40,8 @@ namespace PizzaBox.Storage
         new Crust() { EntityId = 1, Name = "original" },
         new Crust() { EntityId = 2, Name = "stuffed" },
         new Crust() { EntityId = 3, Name = "flatbread" },
+        new Crust() { EntityId = 4, Name = "thin" },
+        new Crust() { EntityId = 5, Name = "italian" }
       });
 
       builder.Entity<Size>().HasData(new[]
@@ -67,7 +69,10 @@ namespace PizzaBox.Storage
 
       builder.Entity<Customer>().HasData(new[]
       {
-        new Customer() { EntityId = 1, Name = "ALO" }
+        new Customer() { EntityId = 1, Name = "RONALDO" },
+        new Customer() { EntityId = 2, Name = "REBECCA" },
+        new Customer() { EntityId = 3, Name = "MESSI" },
+        new Customer() { EntityId = 4, Name = "NEYMAR" }
       });
     }
   }
