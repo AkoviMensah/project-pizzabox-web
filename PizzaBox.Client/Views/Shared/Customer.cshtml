@@ -1,6 +1,23 @@
+@model PizzaBox.Client.Models.PresetPizzaViewModel
 <div style="padding: 100px;">
   <form action="/customer/create" method="post">
     @Html.AntiForgeryToken()
-    <button type="customer/start" style="color:red">CustomPizza</button>
+    <button type="submit" style="color:blue">CustomPizza</button>
+  </form>
+</div>
+
+<div style="padding: 100px;">
+  <form action="/customer/meat" method="post">
+    @Html.AntiForgeryToken()
+    <p>@Model.MeatPizza.ToString()</p>
+    <button type="submit" style="color:red">MeatPizza</button>
+  </form>
+</div>
+
+<div style="padding: 100px;">
+  <form action="/customer/veggie" method="post">
+    @Html.AntiForgeryToken()
+    <p>@Model.VeggiePizza.ToString()</p>
+    <button type="submit" style="color:green">VeggiePizza</button>
   </form>
 </div>

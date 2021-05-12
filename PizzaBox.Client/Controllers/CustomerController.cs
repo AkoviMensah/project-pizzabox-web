@@ -26,8 +26,10 @@ namespace PizzaBox.Client.Controllers
       Order = new Order();
 
       order.Load(_unitOfWork);
+      var pizza = new PresetPizzaViewModel();
+      pizza.Load(_unitOfWork);
 
-      return View("customer", order);
+      return View("customer", pizza);
     }
 
     [HttpGet]
@@ -77,6 +79,42 @@ namespace PizzaBox.Client.Controllers
       order.Load(_unitOfWork);
 
       return View("order", order);
+    }
+
+    [HttpGet]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Meat(PresetPizzaViewModel pizza)
+    {
+      pizza = new PresetPizzaViewModel();
+      pizza.Load(_unitOfWork);
+      var newPizza = pizza.MeatPizza;
+      var newOrder = new Order { Pizzas = new List<Pizza> { newPizza } };
+
+      _unitOfWork.Orders.Insert(newOrder);
+      _unitOfWork.Save();
+
+      ViewBag.Order = newOrder;
+
+      return View("checkout");
+    }
+
+    [HttpGet]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Veggie(PresetPizzaViewModel pizza)
+    {
+      pizza = new PresetPizzaViewModel();
+      pizza.Load(_unitOfWork);
+      var newPizza = pizza.VeggiePizza;
+      var newOrder = new Order { Pizzas = new List<Pizza> { newPizza } };
+
+      _unitOfWork.Orders.Insert(newOrder);
+      _unitOfWork.Save();
+
+      ViewBag.Order = newOrder;
+
+      return View("checkout");
     }
   }
 }

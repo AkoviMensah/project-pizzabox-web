@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace PizzaBox.Storage.Migrations
 {
-    public partial class initialmigration9 : Migration
+    public partial class swithdatabase5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -150,22 +150,30 @@ namespace PizzaBox.Storage.Migrations
                 {
                     { 1L, "original" },
                     { 2L, "stuffed" },
-                    { 3L, "flatbread" }
+                    { 3L, "flatbread" },
+                    { 4L, "thin" },
+                    { 5L, "italian" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Customers",
                 columns: new[] { "EntityId", "Name" },
-                values: new object[] { 1L, "ALO" });
+                values: new object[,]
+                {
+                    { 1L, "RONALDO" },
+                    { 2L, "REBECCA" },
+                    { 3L, "MESSI" },
+                    { 4L, "NEYMAR" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Sizes",
                 columns: new[] { "EntityId", "Name" },
                 values: new object[,]
                 {
+                    { 3L, "large" },
                     { 1L, "small" },
-                    { 2L, "medium" },
-                    { 3L, "large" }
+                    { 2L, "medium" }
                 });
 
             migrationBuilder.InsertData(
@@ -183,10 +191,10 @@ namespace PizzaBox.Storage.Migrations
                 columns: new[] { "EntityId", "Name" },
                 values: new object[,]
                 {
+                    { 4L, "green peppers" },
                     { 1L, "pepperoni" },
                     { 2L, "pineapple" },
                     { 3L, "ham" },
-                    { 4L, "green peppers" },
                     { 5L, "black olives" }
                 });
 

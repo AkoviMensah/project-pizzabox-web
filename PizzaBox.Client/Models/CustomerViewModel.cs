@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using PizzaBox.Domain.Models;
 using PizzaBox.Storage;
-using PizzaBox.Storage.Repositories;
 
 namespace PizzaBox.Client.Models
 {

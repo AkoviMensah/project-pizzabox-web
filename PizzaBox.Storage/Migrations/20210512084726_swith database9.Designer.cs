@@ -9,15 +9,15 @@ using PizzaBox.Storage;
 namespace PizzaBox.Storage.Migrations
 {
     [DbContext(typeof(PizzaBoxContext))]
-    [Migration("20210510114321_initial")]
-    partial class initial
+    [Migration("20210512084726_swith database9")]
+    partial class swithdatabase9
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.5")
+                .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             modelBuilder.Entity("PizzaBox.Domain.Models.Crust", b =>
@@ -49,6 +49,16 @@ namespace PizzaBox.Storage.Migrations
                         {
                             EntityId = 3L,
                             Name = "flatbread"
+                        },
+                        new
+                        {
+                            EntityId = 4L,
+                            Name = "thin"
+                        },
+                        new
+                        {
+                            EntityId = 5L,
+                            Name = "italian"
                         });
                 });
 
@@ -70,7 +80,22 @@ namespace PizzaBox.Storage.Migrations
                         new
                         {
                             EntityId = 1L,
-                            Name = "ALO"
+                            Name = "RONALDO"
+                        },
+                        new
+                        {
+                            EntityId = 2L,
+                            Name = "REBECCA"
+                        },
+                        new
+                        {
+                            EntityId = 3L,
+                            Name = "MESSI"
+                        },
+                        new
+                        {
+                            EntityId = 4L,
+                            Name = "NEYMAR"
                         });
                 });
 
