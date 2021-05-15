@@ -5,16 +5,17 @@ using PizzaBox.Client.Models;
 using PizzaBox.Domain.Models;
 using PizzaBox.Storage;
 using PizzaBox.Storage.Repositories;
+using System;
 
 namespace PizzaBox.Client.Controllers
 {
   [Route("[controller]/[action]")]
-  public class CustomerController : Controller
+  public class OrderController : Controller
   {
     private readonly UnitOfWork _unitOfWork;
     private Order Order = new Order();
 
-    public CustomerController(UnitOfWork unitOfWork)
+    public OrderController(UnitOfWork unitOfWork)
     {
       _unitOfWork = unitOfWork;
     }
@@ -22,28 +23,27 @@ namespace PizzaBox.Client.Controllers
     [HttpGet]
     public IActionResult Index()
     {
-      var order = new CustomerViewModel();
-      Order = new Order();
+      var cust = new CustomerViewModel();
 
-      order.Load(_unitOfWork);
-      var pizza = new PresetPizzaViewModel();
-      pizza.Load(_unitOfWork);
+      cust.Load(_unitOfWork);
 
-      return View("customer", pizza);
+      return View("customer", cust);
     }
+
 
     [HttpGet]
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult start(CustomerViewModel cust)
+    public IActionResult Menu(CustomerViewModel cust)
     {
-      var order = new OrderViewModel();
+        OrderViewModel orderViewModel = new OrderViewModel();
+        orderViewModel.Load(_unitOfWork);
+        TempData["name"] = cust.SelectedCustomer;
+        TempData["store"] = cust.SelectedStore;
+        TempData.Keep();
+        return View("order", orderViewModel);
 
-      order.Load(_unitOfWork);
-      Order.Customer = _unitOfWork.Customers.Select(c => c.Name == cust.SelectedCustomer).First();
-      Order.Store = _unitOfWork.Stores.Select(s => s.Name == cust.SelectedStore).First();
-      ViewBag.Order = Order;
-      return View("order", order);
+      
     }
 
     [HttpGet]
@@ -51,6 +51,12 @@ namespace PizzaBox.Client.Controllers
     [ValidateAntiForgeryToken]
     public IActionResult Create(OrderViewModel order)
     {
+      if (TempData["name"] == null)
+      {
+        CustomerViewModel cust = new CustomerViewModel();
+        cust.Load(_unitOfWork);
+        return View("customer", cust);
+      }
       if (ModelState.IsValid)
       {
         var crust = _unitOfWork.Crusts.Select(c => c.Name == order.SelectedCrust).First();
@@ -65,15 +71,16 @@ namespace PizzaBox.Client.Controllers
         var newPizza = new Pizza() { Crust = crust, Size = size, Toppings = toppings };
         var newOrder = new Order { Pizzas = new List<Pizza> { newPizza } };
         newOrder.Pizzas.Add(newPizza);
-        newOrder.Customer = _unitOfWork.Customers.Select(c => c.Name == order.SelectedCustomer).First();
-        newOrder.Store = _unitOfWork.Stores.Select(s => s.Name == order.SelectedStore).First();
+        newOrder.Customer = _unitOfWork.Customers.Select(c => c.Name == TempData["name"].ToString()).First();
+        newOrder.Store = _unitOfWork.Stores.Select(s => s.Name == TempData["store"].ToString()).First();
+        if (newOrder.Customer == null) newOrder.Customer = new Customer() {Name = TempData["name"].ToString()};
 
         _unitOfWork.Orders.Insert(newOrder);
         _unitOfWork.Save();
 
-        ViewBag.Order = Order;
+        ViewBag.Order = newOrder;
 
-        return View("checkout", Order);
+        return View("placed", Order);
       }
 
       order.Load(_unitOfWork);

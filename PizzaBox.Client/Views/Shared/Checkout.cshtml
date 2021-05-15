@@ -1,19 +1,23 @@
-<div style="padding: 100px;">
-  <h2>Thank you for your order</h2>
-  <a href="/home">home</a>
+@model PizzaBox.Client.Models.OrderViewModel
 
+<div style="padding: 50px;">
+  <form action="/order/create" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+      <legend>Crusts</legend>
 
-  @foreach (var item in ViewBag.Order.Pizzas)
-  {
-    <p>Crust: @item.Crust</p>
-    <p>Size: @item.Size</p>
-    <p>Toppings:</p>
+      @Html.ValidationMessageFor(m => m.SelectedCrust)
 
-    <ul>
-      @foreach (var thing in item.Toppings)
+      @foreach (var item in Model.Crusts)
       {
-        <li>@thing</li>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" asp-for="SelectedCrust" value="@item">
+          <label class="form-check-label" for="@item">@item</label>
+        </div>
       }
-    </ul>
-  }
+    </fieldset>
+
+    <button type="submit">make pizza</button>
+  </form>
+
 </div>

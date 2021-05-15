@@ -1,80 +1,46 @@
 @model PizzaBox.Client.Models.OrderViewModel
 
-<div style="padding: 50px;">
-  <form action="/customer/create" method="post">
+<div style="padding: 50px;" >
+  <form action="/order/create" method="post">
     @Html.AntiForgeryToken()
 
-    <fieldset>
-      <legend>Customers</legend>
 
-      @Html.ValidationMessageFor(m => m.SelectedCustomer)
-
-      @foreach (var item in Model.Customers)
-      {
-        <div class="form-check">
-          <input class="form-check-input" type="radio" asp-for="SelectedCustomer" value="@item">
-          <label class="form-check-label" for="@item">@item</label>
-        </div>
-      }
-    </fieldset>
-
-    <fieldset>
-      <legend>Stores</legend>
-
-      @Html.ValidationMessageFor(m => m.SelectedStore)
-
-      @foreach (var item in Model.Stores)
-      {
-        <div class="form-check">
-          <input class="form-check-input" type="radio" asp-for="SelectedStore" value="@item">
-          <label class="form-check-label" for="@item">@item</label>
-        </div>
-      }
-    </fieldset>
-
-    <fieldset>
-      <legend>Crusts</legend>
-
+<div class="form-group" style="padding: 5px; width: 20em">
+      <h4>Crusts  </h4>
       @Html.ValidationMessageFor(m => m.SelectedCrust)
+      <select class="form-select" asp-for="SelectedCrust" aria-label="Default select example">
+        @foreach (var item in Model.Crusts)
+        {
+          <option label="@item.Name" value="@item.Name"></option>
+        }
+      </select>
+    </div>
 
-      @foreach (var item in Model.Crusts)
-      {
-        <div class="form-check">
-          <input class="form-check-input" type="radio" asp-for="SelectedCrust" value="@item">
-          <label class="form-check-label" for="@item">@item</label>
-        </div>
-      }
-    </fieldset>
-
-    <fieldset>
-      <legend>Sizes</legend>
-
+    <div class="form-group" style="padding: 5px; width: 20em">
+      <h4>Size  </h4>
       @Html.ValidationMessageFor(m => m.SelectedSize)
-
-      @foreach (var item in Model.Sizes)
-      {
-        <div class="form-check">
-          <input class="form-check-input" type="radio" asp-for="SelectedSize" value="@item">
-          <label class="form-check-label" for="@item">@item</label>
-        </div>
-      }
-    </fieldset>
-
-    <fieldset>
+      <select class="form-select" asp-for="SelectedSize" aria-label="Default select example">
+        @foreach (var item in Model.Sizes)
+        {
+          <option label="@item.Name" value="@item.Name"></option>
+        }
+      </select>
+    </div>
+  
+  <fieldset>
       <legend>Toppings</legend>
 
       @Html.ValidationMessageFor(m => m.SelectedToppings)
-
+      <br>
       @foreach (var item in Model.Toppings)
       {
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="@item" name="selectedtoppings" value="@item">
-          <label class="form-check-label" for="@item">@item</label>
-        </div>
+        <input class="form-check-input" type="checkbox" id="@item" name="selectedtoppings" value="@item">
+        <label class="form-check-label" for="@item">@item</label>
+        <br>
       }
+      
     </fieldset>
-
+    <br>
     <button type="submit">make pizza</button>
   </form>
-
 </div>
