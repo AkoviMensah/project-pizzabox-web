@@ -70,7 +70,6 @@ namespace PizzaBox.Client.Controllers
 
         var newPizza = new Pizza() { Crust = crust, Size = size, Toppings = toppings };
         var newOrder = new Order { Pizzas = new List<Pizza> { newPizza } };
-        newOrder.Pizzas.Add(newPizza);
         newOrder.Customer = _unitOfWork.Customers.Select(c => c.Name == TempData["name"].ToString()).First();
         newOrder.Store = _unitOfWork.Stores.Select(s => s.Name == TempData["store"].ToString()).First();
         if (newOrder.Customer == null) newOrder.Customer = new Customer() {Name = TempData["name"].ToString()};
@@ -80,7 +79,7 @@ namespace PizzaBox.Client.Controllers
 
         ViewBag.Order = newOrder;
 
-        return View("placed", Order);
+        return View("placed", newOrder);
       }
 
       order.Load(_unitOfWork);
