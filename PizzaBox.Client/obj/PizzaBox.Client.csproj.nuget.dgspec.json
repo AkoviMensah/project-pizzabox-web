@@ -51,6 +51,10 @@
               "target": "Package",
               "version": "[5.0.5, )"
             },
+            "microsoft.entityframeworkcore.sqlserver": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
             "npgsql.entityframeworkcore.postgresql": {
               "target": "Package",
               "version": "[5.0.5.1, )"
@@ -173,6 +177,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.5, )"
+            },
+            "microsoft.entityframeworkcore.sqlserver": {
+              "target": "Package",
+              "version": "[5.0.6, )"
             },
             "npgsql.entityframeworkcore.postgresql": {
               "target": "Package",

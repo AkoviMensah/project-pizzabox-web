@@ -116,3 +116,12 @@
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Testing/obj/Debug/net5.0/ref/PizzaBox.Testing.dll
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Testing/obj/Debug/net5.0/PizzaBox.Testing.pdb
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Testing/obj/Debug/net5.0/PizzaBox.Testing.genruntimeconfig.cache
+/home/akovi/revature/project-pizzabox-web/test_result/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/home/akovi/revature/project-pizzabox-web/test_result/xunit.runner.reporters.netcoreapp10.dll
+/home/akovi/revature/project-pizzabox-web/test_result/xunit.runner.utility.netcoreapp10.dll
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Testing.deps.json
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Testing.runtimeconfig.json
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Testing.runtimeconfig.dev.json
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Testing.dll
+/home/akovi/revature/project-pizzabox-web/test_result/ref/PizzaBox.Testing.dll
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Testing.pdb

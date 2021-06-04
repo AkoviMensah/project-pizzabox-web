@@ -11,6 +11,8 @@ namespace PizzaBox.Storage
     public DbSet<Pizza> Pizzas { get; set; }
     public DbSet<Size> Sizes { get; set; }
     public DbSet<Topping> Toppings { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<Store> Stores { get; set; }
 
     public PizzaBoxContext(DbContextOptions options) : base(options) { }
 
@@ -25,6 +27,8 @@ namespace PizzaBox.Storage
       builder.Entity<Pizza>().HasKey(e => e.EntityId);
       builder.Entity<Size>().HasKey(e => e.EntityId);
       builder.Entity<Topping>().HasKey(e => e.EntityId);
+      builder.Entity<Customer>().HasKey(e => e.EntityId);
+      builder.Entity<Store>().HasKey(e => e.EntityId);
 
       OnModelSeeding(builder);
     }
@@ -36,6 +40,8 @@ namespace PizzaBox.Storage
         new Crust() { EntityId = 1, Name = "original" },
         new Crust() { EntityId = 2, Name = "stuffed" },
         new Crust() { EntityId = 3, Name = "flatbread" },
+        new Crust() { EntityId = 4, Name = "thin" },
+        new Crust() { EntityId = 5, Name = "italian" }
       });
 
       builder.Entity<Size>().HasData(new[]
@@ -52,6 +58,21 @@ namespace PizzaBox.Storage
         new Topping() { EntityId = 3, Name = "ham" },
         new Topping() { EntityId = 4, Name = "green peppers" },
         new Topping() { EntityId = 5, Name = "black olives" }
+      });
+
+      builder.Entity<Store>().HasData(new[]
+      {
+        new Store() { EntityId = 1, Name = "ChicagoStore" },
+        new Store() { EntityId = 2, Name = "MadisonStore" },
+        new Store() { EntityId = 3, Name = "NewYorkStore" },
+      });
+
+      builder.Entity<Customer>().HasData(new[]
+      {
+        new Customer() { EntityId = 1, Name = "RONALDO" },
+        new Customer() { EntityId = 2, Name = "REBECCA" },
+        new Customer() { EntityId = 3, Name = "MESSI" },
+        new Customer() { EntityId = 4, Name = "NEYMAR" }
       });
     }
   }

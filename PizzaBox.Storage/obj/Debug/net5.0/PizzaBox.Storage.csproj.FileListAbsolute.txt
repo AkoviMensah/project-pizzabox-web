@@ -16,3 +16,9 @@
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Storage/bin/Debug/net5.0/PizzaBox.Storage.runtimeconfig.json
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Storage/bin/Debug/net5.0/PizzaBox.Storage.runtimeconfig.dev.json
 /home/akovi/revature/project-pizzabox-web/PizzaBox.Storage/obj/Debug/net5.0/PizzaBox.Storage.genruntimeconfig.cache
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Storage.deps.json
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Storage.runtimeconfig.json
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Storage.runtimeconfig.dev.json
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Storage.dll
+/home/akovi/revature/project-pizzabox-web/test_result/ref/PizzaBox.Storage.dll
+/home/akovi/revature/project-pizzabox-web/test_result/PizzaBox.Storage.pdb

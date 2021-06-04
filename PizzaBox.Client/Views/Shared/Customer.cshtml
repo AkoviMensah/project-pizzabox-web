@@ -1,0 +1,28 @@
+@model PizzaBox.Client.Models.CustomerViewModel
+<div style="padding: 50px;">
+  <form asp-action="menu" asp-controller="order" method="post">
+
+    <div class="form-group" style="padding: 25px; width: 20em">
+      <h3>Name  </h3>
+      <input type="text" class="form-control" placeholder="Name" aria-label="Name" aria-describedby="basic-addon1"
+        asp-for="SelectedCustomer">
+      @Html.ValidationMessageFor(m => m.SelectedCustomer)
+    </div>
+
+
+    <div class="form-group" style="padding: 25px; width: 20em">
+      <h3>Store  </h3>
+      
+      <select class="form-select" asp-for="SelectedStore" aria-label="Default select example">
+        @foreach (var item in Model.Stores)
+        {
+          <option label="@item.Name" value="@item.Name"></option>
+        }
+      </select>
+    </div>
+
+    <div style="padding-left: 25px; padding-top: 100px;">
+      <button type="submit">Continue</button>
+    </div>
+  </form>
+</div>
